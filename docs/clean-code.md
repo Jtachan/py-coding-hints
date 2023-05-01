@@ -5,6 +5,7 @@ At this section you can find some hits and rules, which could be used anywhere a
 * [Naming](#naming)
 * [Numbers](#numbers)
 * [Docstrings and type hints](#docstrings-and-type-hints)
+* [Imports](#imports)
 
 ## Naming
 
@@ -77,4 +78,51 @@ def count_total_lines(files_paths: Sequence[str]) -> int:
 </br>While specifying the name of a variable and its type within both the function definition and the docstring might seem redundant, it is not that much.
 Whenever the function `help()` is called over a function, this will return the docstring, while the type hints will help you to avoid errors by your IDE warnings.
 
-Working like this will also help you to create sturdier codes. There might be cases in which it is clearer what type must be used after writing the description in the docstring. 
+Working like this will also help you to create sturdier codes. There might be cases in which it is clearer what type must be used after writing the description in the docstring.
+
+## Imports
+
+Regarding imports, there are two main topics to always remember:
+- What is being imported
+- Should an alias be used
+
+Whenever importing, it is highly recommended to import the package instead of the function to use.
+</br>**Example**: We want to use the function from numpy to convert numbers from degrees to radians. If we are running a very small script just for testing, the next might seem logical:
+
+````python
+from numpy import deg2rad
+
+radians = deg2rad(64.4)
+print(radians)
+# This will print "1.1239920382843482"
+````
+
+However, when creating any code is will come the time in which more functions are needed from the same package. Importing the whole package prevents to import all these functions one by one. 
+
+Then, all imports are used as ``{package_name}.{function/class}``. This also improves the understanding of the code, showing clearly from which package comes the called function.
+
+````python
+import numpy
+
+radians = numpy.deg2rad(64.4)
+print(radians)
+# This will print "1.1239920382843482"
+
+array = numpy.array([radians])
+````
+
+This leads to the next issue: some modules contain inconvenient names to use, maybe because they are to complex to understand or a long path to call them.
+For it, Python includes the use of alias, allowing to rename an import by using the keyword ``as``.
+An alias is a very helpful tool to short anything, however keep in mind that a strange combination of letters can also make the code uglier or harder to understand.
+
+```python
+import numpy as np
+
+radians = np.deg2rad(64.4)
+print(radians)
+# This will print "1.1239920382843482"
+```
+
+Do not be afraid of using alias. I recommend to use aliases within the next cases:
+- To rename the import to a word clear to understand
+- To rename the import into a maximum 3-character combination that relates to the package name, like ``import dataclasses as dtc``

@@ -18,7 +18,8 @@ Here are also some online tools, which can help depending on the python script t
 
 ## Index
 
-* [**Writing clean code**](docs/CleanCoding)
-  * [Naming](docs/CleanCoding/clean-code.md#naming)
-  * [Numbers](docs/CleanCoding/clean-code.md#numbers)
-  * [Docstrings and Type hints](docs/CleanCoding/clean-code.md#docstrings-and-type-hints)
+* [**Writing clean code**](docs/clean-code.md)
+  * [Naming](docs/clean-code.md#naming)
+  * [Numbers](docs/clean-code.md#numbers)
+  * [Docstrings and Type hints](docs/clean-code.md#docstrings-and-type-hints)
+  * [Imports](docs/clean-code.md#imports)
