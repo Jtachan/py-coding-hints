@@ -18,4 +18,7 @@ Here are also some online tools, which can help depending on the python script t
 
 ## Index
 
-TBD
+* [**Writing clean code**](docs/CleanCoding)
+  * [Naming](docs/CleanCoding/clean-code.md#naming)
+  * [Numbers](docs/CleanCoding/clean-code.md#numbers)
+  * [Docstrings and Type hints](docs/CleanCoding/clean-code.md#docstrings-and-type-hints)
