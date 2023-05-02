@@ -23,3 +23,7 @@ Here are also some online tools, which can help depending on the python script t
   * [Numbers](docs/clean-code.md#numbers)
   * [Docstrings and Type hints](docs/clean-code.md#docstrings-and-type-hints)
   * [Imports](docs/clean-code.md#imports)
+* [**Package development**](docs/package-development.md)
+  * [Installation](docs/package-development.md#installation)
+  * [Project structure](docs/package-development.md#project-structure)
+  * [Pipeline of development](docs/package-development.md#pipeline-of-development)
