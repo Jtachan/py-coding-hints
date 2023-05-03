@@ -6,7 +6,7 @@ import setuptools
 repo_url = "https://github.com/Jtachan/py-coding-hints.git"
 
 if __name__ == "__main__":
-    with open("Readme.md", "r", encoding="utf-8") as fh:
+    with open("README.md", "r", encoding="utf-8") as fh:
         long_description = fh.read()
 
     setuptools.setup(

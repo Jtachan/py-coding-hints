@@ -26,4 +26,4 @@ Here are also some online tools, which can help depending on the python script t
 * [**Package development**](docs/package-development.md)
   * [Installation](docs/package-development.md#installation)
   * [Project structure](docs/package-development.md#project-structure)
-  * [Pipeline of development](docs/package-development.md#pipeline-of-development)
+
