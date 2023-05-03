@@ -13,7 +13,7 @@ In this document, you will understand the basics about the parts of a package an
   * [Unit test](#unit-test-folder)
   * [Examples](#examples-folder)
   * [Linting](#linting-files)
-* [Pipeline of development](#pipeline-of-development)
+* [Pipeline for development](#pipeline-for-development)
 
 ## Installation
 
@@ -124,7 +124,7 @@ These rules have to be specified within these linting configuration files.
 For example, `pylint` will check your code with the rules specified at the `pylintrc` file.
 If this one is non-existing, then a default set of rules are used.
 
-## Pipeline of development
+## Pipeline for development
 
 Whenever you are working on a project, it is most possible that you encounter one or multiple of the following:
 * There are multiple people working on the project on different tasks at the same repo
