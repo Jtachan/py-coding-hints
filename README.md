@@ -1,4 +1,4 @@
-# Python Coding #
+# Python Coding Hints#
 
 This repository is a guideline of some coding I've been learning. 
 I like to think that I still can learn as much as possible, so this is a readme explaining (with examples) some python that improved my coding and I hope can also help others.
@@ -26,4 +26,4 @@ Here are also some online tools, which can help depending on the python script t
 * [**Package development**](docs/package-development.md)
   * [Installation](docs/package-development.md#installation)
   * [Project structure](docs/package-development.md#project-structure)
-
+  * [Pipeline of development](docs/package-development.md#pipeline-of-development)
