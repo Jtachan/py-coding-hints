@@ -1,5 +1,6 @@
 """
-Make sure to adapt all the fields of this file to what your package requires
+Make sure to adapt all the fields of this file to what your package requires.
+Don't forget to rename this file to 'setup.py'
 """
 import setuptools
 
