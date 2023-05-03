@@ -1,19 +1,30 @@
 """
-Fill all the specified fields. Extend other fields if you think it could be
-required.
+Make sure to adapt all the fields of this file to what your package requires
 """
 import setuptools
 
-package_url = "https://github.com/Jtachan/py-coding-hints.git"
+repo_url = "https://github.com/Jtachan/py-coding-hints.git"
 
-setuptools.setup(
-    name="python-coding-hints",
-    url=package_url,
-    description="This repository is pure for learning purposes",
-    author="Jaime Gonzalez Gomez",
-    author_email="jaimenicolas.gonzalezg@gmail.com",
-    version="0.0.0",
-    install_requires=[
-        "numpy>=1.20.0",
-    ],
-)
+if __name__ == "__main__":
+    with open("Readme.md", "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+
+    setuptools.setup(
+        url=repo_url,
+        name="python-coding-hints",
+        author="XXX",
+        author_email="XXX",
+        version="0.0.0",
+        python_requires=">=3.8",
+        description="This repository is pure for learning purposes",
+        long_description=long_description,
+        long_description_content_type="text/markdown",
+        install_requires=[
+            "numpy>=1.20.0",
+        ],
+        entry_points={
+            "console_scripts": [
+                # ScriptName=path.to.module.py:function_name
+            ]
+        },
+    )
