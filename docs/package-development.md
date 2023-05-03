@@ -1,6 +1,6 @@
 # Packages in python
 
-The word "Packages" defines every file and module that contains a set of files and folders, for a python tool to run. This is defined as "Libraries" in other languages like C.
+The word "Packages" defines every file and module that contains a set of files and folders for a python tool to run. This is defined as "Libraries" in other languages like C.
 
 In this document, you will understand the basics about the parts of a package and how to work with it. You will also find links to other sections and files.
 
@@ -33,7 +33,7 @@ pip install .
 ## Project structure
 
 As just mentioned, the file that makes our package installable is the `setup.py`. However, keeping a good structure is crucial for our code to be easily maintainable.
-While there is no rule about this structure for Python, I recommend to use the following structure
+While there is no rule about this structure for Python, I recommend using the following structure
 
 ```
 Project
@@ -51,7 +51,7 @@ Project
 ```
 
 Here I provide you some descriptions about the folders and files shown in the structure.
-Any further on information is provided later on.
+Any further information is provided later on.
 
 ### Setup.py file
 
@@ -101,7 +101,7 @@ That is the reason to always have unit-tests. These tests must check:
 * Any important error to be raised is raised as it should
 * The calculated values from the code are correct
 
-If your unit-test is good, whenever you introduce a new feature the test code will tell you if everything is still correct or either the package or the testing code have to be updated.
+If your unit-test is good, whenever you introduce a new feature, the test code will tell you if everything is still correct or either the package or the testing code has to be updated.
 
 ### Examples folder
 
@@ -134,11 +134,11 @@ Whenever you are working on a project, it is most possible that you encounter on
 
 Working on an online repo is a good solution for a whole team to work on the same tool at the same time without stepping on each other.
 There are many different alternatives, like `Github` or `Gitea`.
-<br>Whenever you have decided which one to use, following the next bullet points will make everything easier in the future, for working with the previous enumerated situations:
+<Br>Whenever you have decided which one to use, following the next bullet points will make everything easier in the future, for working with the previous enumerated situations:
 1. **Keep a `master` and a `develop` branch protected**:<br>
 The `master` branch should contain only the code that is stable and released. From it, the `develop` branch should contain any bugfix and new feature that has been reviewed. Protect always the branches so people cannot push on them directly, allowing them to contribute only with pull requests.
 2. **Use correct namings on the branches**:<br>
-Any new branch to modify the tool should be created up from the latest `develop`. Then, they can be named using prefixes to create organized folders. Although there is no established rules on this, these are the ones I recommend to use:
+Any new branch to modify the tool should be created up from the latest `develop`. Then, they can be named using prefixes to create organized folders. Although there are no established rules on this, these are the ones I recommend using:
   
     | Name                | Created from | Includes                                                                     | To be merged into |
     |---------------------|--------------|------------------------------------------------------------------------------|-------------------|
@@ -147,15 +147,19 @@ Any new branch to modify the tool should be created up from the latest `develop`
     | `hotfix\vX.Y.{Z+1}` | `master`     | Fixes related to the code that compromise the stability of the tool          | `master`          |
     | `release\vX.Y.Z`    | `develop`    | All reviewed changes that create the new code release                        | `master`          |
 3. **Create clear commits**:<br>
-Many people make commits like `corrected issue`. While this is a very valid commit, it will create a very tough situation when tracking back a specific change. I recommend to make multiple commits, separating that only commit into:
+Many people make commits like `corrected issue`. While this is a very valid commit, it will create a very tough situation when tracking back a specific change. I recommend making multiple commits, separating that only commit into:
    - C1: `renamed function parameter`
    - C2: `introduced new dataclass to hold the intermediate state`
    - C3: `corrected the math contained at the prediction's calculation`
 4. **Make sure all additions are reviewed**:<br>
-It might sound like a very basic concept, but it is a very necessary one. Sometimes, the new additions create new bugs that can be fixed before merging it into the code, or even the code itself can be optimized. Having someone else review your code will always help on finding these situations and merging a better code (as long as the reviewer takes the task seriously).
+It might sound like a very basic concept, but it is very necessary. Sometimes, the new additions create new bugs that can be fixed before merging it into the code, or even the code itself can be optimized. Having someone else review your code will always help on finding these situations and merging a better code (as long as the reviewer takes the task seriously).
 
 As you can see, the steps to follow are not complicated at all.
 Feel free to update this to the routine that works better for you, but don't forget to plan ahead to avoid creating more problems for your future self.
+
+## Implementing easy imports
+
+As you can notice 
 
 ## Releasing
 
