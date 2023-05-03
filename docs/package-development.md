@@ -165,7 +165,7 @@ However, to avoid everything to be disorganized, it is important to keep in mind
 * How to separate the modules
 * How to name the modules
 
-As a good practice to keep everything tidy up, these are the keypoints I recommend:
+As a good practice to keep everything tidy up, these are the key points I recommend:
 
 - Module's names should be in `snake_case` in reference to what they contain.
 - Any new class that potentially can be used in multiple places should be stored at its own module.
@@ -174,7 +174,22 @@ As a good practice to keep everything tidy up, these are the keypoints I recomme
   - The module with the main functionality
   - A new module named `_cli_scripts.py` or similar (preferred)
 
+Each module should start with a docstring, specifying what the module contains as a general description.
 
+```python
+# File math_shapes/circle
+"""
+This module contains the class Circle
+"""
+import numpy as np
+
+
+class Circle:
+    """
+    Class to represent the mathematical shape of a circle and its properties.
+    """
+    ...
+```
 
 ## Implementing easy imports
 
@@ -217,6 +232,8 @@ import math_shapes as shapes
 my_circle = shapes.Circle(radius=3)
 my_square = shapes.Square(length=2)
 ```
+
+Remember to add to the `__init__.py` file all that is designed to be reachable for the user.
 
 ## Releasing
 
