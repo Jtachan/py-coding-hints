@@ -157,6 +157,25 @@ It might sound like a very basic concept, but it is very necessary. Sometimes, t
 As you can see, the steps to follow are not complicated at all.
 Feel free to update this to the routine that works better for you, but don't forget to plan ahead to avoid creating more problems for your future self.
 
+## Modules
+
+When creating packages, it is very common to create multiple modules (python files) containing different codes.
+This is a very extended routine, as it is also a good solution to organize the code.
+However, to avoid everything to be disorganized, it is important to keep in mind:
+* How to separate the modules
+* How to name the modules
+
+As a good practice to keep everything tidy up, these are the keypoints I recommend:
+
+- Module's names should be in `snake_case` in reference to what they contain.
+- Any new class that potentially can be used in multiple places should be stored at its own module.
+- Any class/function used only in one module (and not available to the user) doesn't need an extra module.
+- Command line interface scripts can be stored at:
+  - The module with the main functionality
+  - A new module named `_cli_scripts.py` or similar (preferred)
+
+
+
 ## Implementing easy imports
 
 As you can notice at the [specified package structure](#project-structure), all Python packages contain a `__init__.py`.
