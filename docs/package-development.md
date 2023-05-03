@@ -159,7 +159,45 @@ Feel free to update this to the routine that works better for you, but don't for
 
 ## Implementing easy imports
 
-As you can notice 
+As you can notice at the [specified package structure](#project-structure), all Python packages contain a `__init__.py`.
+This file makes the package importable and does not really need to be filled for the package to work; however, I can strongly recommend filling it.
+
+To understand "easy importing", let's work with an example here; let's suppose the following package:
+```
+math_shapes\
+    |-> __init__.py
+    |-> circle.py
+    |-> square.py
+```
+
+Now, the following is an example code on a script using both classes defined within the package:
+
+```python
+from math_shapes.circle import Circle
+from math_shapes.square import Square
+
+my_circle = Circle(radius=3)
+my_square = Square(length=2)
+```
+
+While the code will work properly, it is not the most efficient package to use, as the classes have to be imported from each different module.
+Here is where the `__init__.py` shines and makes everything easier for the user:
+
+```python
+"""This is the __init__.py file"""
+from math_shapes.circle import Circle
+from math_shapes.square import Square
+__all__ = ["Circle", "Square"]
+```
+
+Containing this init file, now the whole module can be imported and classes can be used directly from it:
+
+```python
+import math_shapes as shapes
+
+my_circle = shapes.Circle(radius=3)
+my_square = shapes.Square(length=2)
+```
 
 ## Releasing
 
