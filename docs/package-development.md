@@ -14,6 +14,7 @@ In this document, you will understand the basics about the parts of a package an
   * [Examples](#examples-folder)
   * [Linting](#linting-files)
 * [Pipeline for development](#pipeline-for-development)
+* [Releasing](#releasing)
 
 ## Installation
 
@@ -155,3 +156,15 @@ It might sound like a very basic concept, but it is a very necessary one. Someti
 
 As you can see, the steps to follow are not complicated at all.
 Feel free to update this to the routine that works better for you, but don't forget to plan ahead to avoid creating more problems for your future self.
+
+## Releasing
+
+There will reach the point in which we want to release the package we've been working on. It does not matter if it is a pre-release, a first release or any other possibility. 
+
+Releasing a package means increasing the version number `X.Y.Z` specified at the `setup.py` file (as long as you decide to use [semantic versioning](https://semver.org/)). The `X.Y.Z` refer to the `Mayor.Minor.Patch` numbers.
+
+**When to increase each number**:
+
+- `Patch`: If a hotfix is implemented or the latest `develop` to merge contains only bugfixes.
+- `Minor`: If the tool contains new functionalities, and it is still backwards compatible with the previous releases that share the same major release. The `Patch` number has to be reset to 0, even in the new release contains bugfixes.
+- `Major`: If there is **any change** at the tool that makes it incompatible with the latest previous release. These can be renaming functions/classes/variables/parameters, deprecating old functionalities that the user can call, renaming the files and modules, etc. Both `Minor` and `Patch` numbers must be reset to 0.
