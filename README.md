@@ -27,4 +27,5 @@ Here are also some online tools, which can help depending on the python script t
   * [Installation](docs/package-development.md#installation)
   * [Project structure](docs/package-development.md#project-structure)
   * [Pipeline for development](docs/package-development.md#pipeline-for-development)
+  * [Implementing easy imports](docs/package-development.md#implementing-easy-imports)
   * [Releasing](docs/package-development.md#releasing)
