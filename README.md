@@ -1,4 +1,4 @@
-# Python Coding Hints
+# Python Coding Guidelines
 
 This repository is a guideline of some coding I've been learning. 
 I like to think that I still can learn as much as possible, so this is a readme explaining (with examples) some python that improved my coding, and I hope can also help others.
@@ -18,11 +18,11 @@ Here are also some online tools, which can help depending on the python script t
 
 ## Index
 
-* [**Writing clean code**](docs/clean-code.md)
-  * [Naming](docs/clean-code.md#naming)
-  * [Numbers](docs/clean-code.md#numbers)
-  * [Docstrings and Type hints](docs/clean-code.md#docstrings-and-type-hints)
-  * [Imports](docs/clean-code.md#imports)
+* [**Python basics**](docs/python-basics.md)
+  * [Naming](docs/python-basics.md#naming)
+  * [Numbers](docs/python-basics.md#numbers)
+  * [Docstrings and Type hints](docs/python-basics.md#docstrings-and-type-hints)
+  * [Imports](docs/python-basics.md#imports)
 * [**Package development**](docs/package-development.md)
   * [Installation](docs/package-development.md#installation)
   * [Project structure](docs/package-development.md#project-structure)
