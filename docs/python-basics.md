@@ -114,7 +114,7 @@ array = numpy.array([radians])
 
 This leads to the next issue: some modules contain inconvenient names to use, maybe because they are too complex to understand or a long path to call them.
 For it, Python includes the use of alias, allowing to rename an import by using the keyword ``as``.
-An alias is a very helpful tool to short anything, however keep in mind that a strange combination of letters can also make the code uglier or harder to understand.
+An alias is a very helpful tool to short anything, keep in mind that a strange combination of letters can also make the code uglier or harder to understand.
 
 ```python
 import numpy as np
