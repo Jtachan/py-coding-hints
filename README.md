@@ -16,11 +16,12 @@ Here are also some online tools, which can help depending on the python script t
 | [Regex 101](https://regex101.com/)                                         | Creating and testing regex expressions for multiple languages | 
 | [3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/) | Converting euler angles to rotation matrix or quaternions     |
 
-## Index
+## Table of content
 
 * [**Python basics**](docs/python-basics.md)
   * [Naming](docs/python-basics.md#naming)
   * [Math](docs/python-basics.md#math-and-numbers)
+  * [Sequences in Python](docs/python-basics.md#sequences-in-python)
   * [Docstrings and Type hints](docs/python-basics.md#docstrings-and-type-hints)
   * [Imports](docs/python-basics.md#imports)
 * [**Package development**](docs/package-development.md)

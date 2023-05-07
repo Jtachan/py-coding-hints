@@ -7,7 +7,10 @@ In this section, you can find some hits and rules, which could be used anywhere 
 * [Math and numbers](#math-and-numbers)
   * [Float numbers](#float-numbers)
   * [Cleaner numbers](#writing-clearer-numbers-for-coders)
-* [Sequences in Python]()
+* [Sequences in Python](#sequences-in-python)
+  * [List and tuples](#lists-and-tuples)
+  * [List comprehension](#list-comprehension)
+  * [Generators](#generators)
 * [Docstrings and type hints](#docstrings-and-type-hints)
 * [Imports](#imports)
 
@@ -161,6 +164,24 @@ If it is still hard for you to understand generators, comparing them to function
 |--------------------------------------------|-----------------------------------------------------------|
 | Use the keyword `return`                   | Use the keyword `yield`                                   |
 | The code stops after one value is returned | The code stops when it reaches the end of the coded logic |
+
+At last, generators can also be defined similar to the list comprehension.
+The stored in memory value will be a function that will iterate over some items:
+
+```python
+numbers = (n for n in range(3))
+print(numbers)
+>>> <generator object <genexpr> at 0x000002F92972DD20>
+
+for number in numbers:
+    print(number)
+>>> 1
+>>> 2
+>>> 3
+```
+
+Remember the functions `list()` and `tuple()` can be used to convert the object into a sequence.
+This I find helpful for debugging purposes.
 
 ## Docstrings and type-hints
 
