@@ -7,6 +7,7 @@ In this section, you can find some hits and rules, which could be used anywhere 
 * [Math and numbers](#math-and-numbers)
   * [Float numbers](#float-numbers)
   * [Cleaner numbers](#writing-clearer-numbers-for-coders)
+* [Sequences in Python]()
 * [Docstrings and type hints](#docstrings-and-type-hints)
 * [Imports](#imports)
 
@@ -77,6 +78,89 @@ True
 
 The use of the underscore for the number "1000" is a little overkill, but it's exceptional to see the example.
 <br/>I recommend integrating this behavior in your code for numbers with 5 digits or more.
+
+## Sequences in Python
+
+### Lists and Tuples
+
+**[Lists](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)** are "arrays" of data, which can be modified by deleting items, adding new or modifying them.
+Lists are defined with brackets `[]` containing all the items. 
+The build-in function `list()` can also be called to transform a sequence into a list.
+
+**Tuples** can be understood as lists that are not modifiable.
+They are defined with parenthesis `()` containing all the items. 
+There is also a build-in function `tuple()` to convert a sequence into a tuple.
+
+In Python, it is possible to **iterate** over sequences without using any indexing:
+
+```python
+numbers = (1, 2, 3)
+for n in numbers:
+    print(n)
+>>> 1
+>>> 2
+>>> 3
+```
+
+### List comprehension
+
+List comprehension allows creating lists with fewer lines of code.
+
+Let's take the example we want to create a list with the letters of a word.
+While we could iterate with a for-loop over the whole word to create the list (which is a valid solution),
+a list comprehension would create the list in only one line of code:
+
+````python
+word = "python"
+
+# No use of the list comprehension
+letters = []
+for letter in word:
+    letters.append(letter)
+print(letters)
+>>> ["p", "y", "t", "h", "o", "n"]
+
+# Use of list comprehension
+letters = [letter for letter in word]
+print(letters)
+>>> ["p", "y", "t", "h", "o", "n"]
+````
+
+### Generators
+
+While generators are not a sequence _per se_, we can think of them as one for iterating purposes.
+It is very recommended to use them in applications to save memory for very large sets of information.
+
+For example, we want to design a function that returns all lines in a text document.
+Knowing everything explained in this section, this could easily be done creating a list:
+
+````python
+def listed_lines_in_document(file_path):
+    with open(file_path) as file:
+        all_lines = file.readlines()
+    return all_lines
+````
+
+This function returns all lines of the document in a sequence.
+While the purpose is fulfilled, very large documents will be inconvenient in the used memory.
+
+A **generator** will return all lines one by one, without storing them anywhere.
+This means once we iterate over the next item, the previous one is lost.
+Generators can be defined in functions by using `yield` instead of return.
+
+```python
+def listed_lines_in_document(file_path):
+    with open(file_path) as file:
+        for line in file.readlines():
+          yield line
+```
+
+If it is still hard for you to understand generators, comparing them to functions is a good way to understand them better:
+
+| Functions                                  | Generators                                                |
+|--------------------------------------------|-----------------------------------------------------------|
+| Use the keyword `return`                   | Use the keyword `yield`                                   |
+| The code stops after one value is returned | The code stops when it reaches the end of the coded logic |
 
 ## Docstrings and type-hints
 
