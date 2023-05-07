@@ -102,6 +102,7 @@ That is the reason to always have unit-tests. These tests must check:
 * The calculated values from the code are correct
 
 If your unit-test is good, whenever you introduce a new feature, the test code will tell you if everything is still correct or either the package or the testing code has to be updated.
+Unit tests python packages are `pytest` and `unittest`. While both have their advantages and inconvenient, `pytest` is a more efficient tool for unit tests definitions.
 
 ### Examples folder
 

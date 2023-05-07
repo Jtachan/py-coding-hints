@@ -4,7 +4,9 @@ In this section, you can find some hits and rules, which could be used anywhere 
 
 
 * [Naming](#naming)
-* [Numbers](#numbers)
+* [Math and numbers](#math-and-numbers)
+  * [Float numbers](#float-numbers)
+  * [Cleaner numbers](#writing-clearer-numbers-for-coders)
 * [Docstrings and type hints](#docstrings-and-type-hints)
 * [Imports](#imports)
 
@@ -17,7 +19,43 @@ While the general naming conventions to follow are the ones specified at the [Go
 3. **Function and methods names**: They should be named after the operation they pretend to work on. It is expected that the function `serialize_numpy_for_json(numpy_element)` will check the given element and transform it into Json serializable, due numpy elements are not serializable into Json without any modification.
 4. **Variables and properties**: They should be named after the value they return. While this is clear for a variable, a class property might perform some operation before returning the result, do not be confused by it. E.G.: The class `Circle` should not contain the property `Circle.calculate_area`, but instead the `Circle.area` or even the method `Circle.calculate_area()`.
 
-## Numbers
+## Math and numbers
+
+### Float numbers
+
+Float numbers are those that contain decimals.
+While this is a basic idea, it is crucial to understand all the characteristics that come into them.
+
+When working with floats:
+* Any mathematical operation containing floats will return always a float.
+* They can be converted to integers by using `int()`. If so, the truncated value is returned.
+* Two floats can never be directly compared by `==`
+
+The third point needs a little bit of explanation.
+Due to how Python handles floats, it is never a good idea to compare two of them with `==` to see if they are equal.
+Instead, you should compare if **the difference** is lower than a defined threshold.
+
+```python
+# This is correct for comparing integers
+a, b, c = 1, 2, 3
+print(a + b == c)
+>>> True
+
+# This is incorrect for comparing floats
+a, b, c = 0.1, 0.2, 0.3
+print(a + b == c)
+>>> False
+# We can check what is being calculated as the sum of 0.1 and 0.2
+print(a + b)
+>>> 0.30000000000000004
+
+# This is correct for comparing floats
+a, b, c = 0.1, 0.2, 0.3
+print(abs(a + b - c) < 1e-6)
+>>> True
+```
+
+### Writing clearer numbers for coders
 
 When coding numbers, sometimes large values are required.
 Let's take, for example, we want to use `1000` instead of `1e3`.

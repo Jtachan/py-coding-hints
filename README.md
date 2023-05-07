@@ -20,7 +20,7 @@ Here are also some online tools, which can help depending on the python script t
 
 * [**Python basics**](docs/python-basics.md)
   * [Naming](docs/python-basics.md#naming)
-  * [Numbers](docs/python-basics.md#numbers)
+  * [Math](docs/python-basics.md#math-and-numbers)
   * [Docstrings and Type hints](docs/python-basics.md#docstrings-and-type-hints)
   * [Imports](docs/python-basics.md#imports)
 * [**Package development**](docs/package-development.md)
