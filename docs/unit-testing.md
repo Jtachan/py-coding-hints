@@ -8,6 +8,8 @@ This document is based for `pytests`, although the first section will show you t
 
 **Content**
 - [Pytest Vs Unittest](#pytest-vs-unittest)
+- [Essentials](#essentials)
+- Pytest useful features
 
 ## Pytest Vs Unittest
 
@@ -77,3 +79,50 @@ This was a very small example, but `pytest.mark.parametrize` allows to set up va
 2. color="blue", expected_blue=True
 
 If instead of using once "parametrize" with all the arguments it would have been several (one for each argument), the total number of tests would have been the multiplication of the cases at each "parametrize".
+
+## Essentials
+
+Defining a good unit test, as mentioned previously, is a very good practise.
+If done correctly, a unit test provides the following advantages (among others):
+- Tests the correct usage of the tool.
+- Checks that new code additions don't break the old behaviour.
+- Provides simple example on using the tool.
+- Allow to test multiple cases that were not taken in consideration when first defining the algorithm.
+
+When we are decided to create a unit test, it is important also to keep a clean hierarchy.
+As mentioned in the [project structure](package-development.md#project-structure) for Python packages, the unit test has to be outside from the package folder (as it is not directly part of it).
+
+A good structure is creating a folder named `unittests`, which contains multiple test files named `test_{CLASS_NAME}.py`. Within each file, each test is defined as a function:
+```python
+"""
+File 'unittests\test_drawing.py'
+"""
+
+def test_correct_drawings():
+    """
+    Test for checking each drawing is correctly initialized. The test will
+    fail if any function raises an error or the number of sides is not correct.
+    """
+    ...
+
+def test_colored_circle():
+    """
+    Test for checking all drawn circles are initialized with the correct color
+    """
+    ...
+```
+
+Each file might contain multiple tests.
+It is recommended to **create multiple small test function** that one huge function testing everything.
+Small test help creating simple code that is easy to check.
+
+When defining a test function, the trick is to believe that all the other parts of the code work perfectly.
+Thus, you only need to test one small part.
+Because this is repeated (one test for each part), if any of those parts are broken, you would know.
+
+To run all your tests, then you only need to run the following command:
+```commandline
+pytest unittests\
+```
+
+## Pytest useful features
