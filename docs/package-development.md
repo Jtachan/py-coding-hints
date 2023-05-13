@@ -101,8 +101,11 @@ That is the reason to always have unit-tests. These tests must check:
 * Any important error to be raised is raised as it should
 * The calculated values from the code are correct
 
-If your unit-test is good, whenever you introduce a new feature, the test code will tell you if everything is still correct or either the package or the testing code has to be updated.
-Unit tests python packages are `pytest` and `unittest`. While both have their advantages and inconvenient, `pytest` is a more efficient tool for unit tests definitions.
+If your unit test is good, whenever you introduce a new feature, the test code will tell you if everything is still correct or either the package or the testing code has to be updated.
+Unit tests python packages are `pytest` and `unittest`. 
+While both have their advantages and inconvenient, `pytest` is a more efficient tool for unit tests definitions.
+
+Here you can learn more about [unit testing](unit-testing.md).
 
 ### Examples folder
 
