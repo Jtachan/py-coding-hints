@@ -199,7 +199,7 @@ Another example is that we might want to run only certain cases at a test. For t
 import pytest
 
 
-@pytest.mark.parametrize("number", range(100))
+@pytest.mark.parametrize("number", list(range(100)))
 def test_even_numbers(number):
     # All odd numbers will be skipped
     pytest.mark.skipif(number % 2 != 0)

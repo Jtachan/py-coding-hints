@@ -41,22 +41,22 @@ Instead, you should compare if **the difference** is lower than a defined thresh
 
 ```python
 # This is correct for comparing integers
-a, b, c = 1, 2, 3
-print(a + b == c)
->>> True
+>>> a, b, c = 1, 2, 3
+>>> print(a + b == c)
+True
 
 # This is incorrect for comparing floats
-a, b, c = 0.1, 0.2, 0.3
-print(a + b == c)
->>> False
+>>> a, b, c = 0.1, 0.2, 0.3
+>>> print(a + b == c)
+False
 # We can check what is being calculated as the sum of 0.1 and 0.2
-print(a + b)
->>> 0.30000000000000004
+>>> print(a + b)
+0.30000000000000004
 
 # This is correct for comparing floats
-a, b, c = 0.1, 0.2, 0.3
-print(abs(a + b - c) < 1e-6)
->>> True
+>>> a, b, c = 0.1, 0.2, 0.3
+>>> print(abs(a + b - c) < 1e-6)
+True
 ```
 
 ### Writing clearer numbers for coders
@@ -97,12 +97,12 @@ There is also a build-in function `tuple()` to convert a sequence into a tuple.
 In Python, it is possible to **iterate** over sequences without using any indexing:
 
 ```python
-numbers = (1, 2, 3)
-for n in numbers:
-    print(n)
->>> 1
->>> 2
->>> 3
+>>> numbers = (1, 2, 3)
+>>> for n in numbers:
+...    print(n)
+1
+2
+3
 ```
 
 ### List comprehension
@@ -121,12 +121,12 @@ letters = []
 for letter in word:
     letters.append(letter)
 print(letters)
->>> ["p", "y", "t", "h", "o", "n"]
+# This prints ["p", "y", "t", "h", "o", "n"]
 
 # Use of list comprehension
 letters = [letter for letter in word]
 print(letters)
->>> ["p", "y", "t", "h", "o", "n"]
+# This prints ["p", "y", "t", "h", "o", "n"]
 ````
 
 ### Generators
@@ -169,15 +169,15 @@ At last, generators can also be defined similar to the list comprehension.
 The stored in memory value will be a function that will iterate over some items:
 
 ```python
-numbers = (n for n in range(3))
-print(numbers)
->>> <generator object <genexpr> at 0x000002F92972DD20>
+>>> numbers = (n for n in range(3))
+>>> print(numbers)
+<generator object <genexpr> at 0x000002F92972DD20>
 
-for number in numbers:
-    print(number)
->>> 1
->>> 2
->>> 3
+>>> for number in numbers:
+...    print(number)
+1
+2
+3
 ```
 
 Remember the functions `list()` and `tuple()` can be used to convert the object into a sequence.
