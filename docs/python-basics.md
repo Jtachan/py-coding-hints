@@ -183,47 +183,6 @@ The stored in memory value will be a function that will iterate over some items:
 Remember the functions `list()` and `tuple()` can be used to convert the object into a sequence.
 This I find helpful for debugging purposes.
 
-## Docstrings and type-hints
-
-Any package needs to be supported and modify from time to time. It is crucial to create a code that can be easily understood. For it, docstrings and type hints help, then they are always a must at any quality code.
-
-**Docstrings** contain the description and meaning of the function, as well as for the parameters and return value. I believe [numpy docstring](https://numpydoc.readthedocs.io/en/latest/format.html) is one of the clearest to use at any place.
-
-**Type hints** show the type of the variable to be used within the parameters or to be returned. These do not only allow better understanding of the parameters, but also help to check correct variables are being given. Many of the simple types can be writen by their naming, as for example `str`, but others need of an extra library, as `List` from `typing` or `NDARRAY` from `numpy.typing`.
-
-
-```python
-from typing import Sequence
-
-def count_total_lines(files_paths: Sequence[str]) -> int:
-    """
-    Count the total number of lines from several files.
-    
-    Parameters
-    ----------
-    files_paths: sequence of str
-        Paths to the files to be read.
-        
-    Returns
-    -------
-    nof_lines: int
-        Value of all lines from all the files together.
-    """
-    nof_lines = 0
-
-    for file_path in files_paths:
-        with open(file_path, "r") as file:
-            nof_lines += len(file.readlines())
-
-    return nof_lines
-```
-
-❗**Please note**
-</br>While specifying the name of a variable and its type within both the function definition and the docstring might seem redundant, it is not that much.
-Whenever the function `help()` is called over a function, this will return the docstring, while the type hints will help you to avoid errors by your IDE warnings.
-
-Working like this will also help you to create sturdier codes. There might be cases in which it is clearer what type must be used after writing the description in the docstring.
-
 ## Packages
 
 It is called a 'package' to some code that can be installed and imported for others to use in different python codes.

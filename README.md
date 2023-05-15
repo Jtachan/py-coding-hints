@@ -22,7 +22,6 @@ Here are also some online tools, which can help depending on the python script t
   * [Naming](docs/python-basics.md#naming)
   * [Math](docs/python-basics.md#math-and-numbers)
   * [Sequences in Python](docs/python-basics.md#sequences-in-python)
-  * [Docstrings and Type hints](docs/python-basics.md#docstrings-and-type-hints)
   * [Packages](docs/python-basics.md#packages)
 * [**Package development**](docs/package-development.md)
   * [Installation](docs/package-development.md#installation)
