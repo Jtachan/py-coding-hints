@@ -7,12 +7,12 @@ In this section, you can find some hits and rules, which could be used anywhere 
 * [Math and numbers](#math-and-numbers)
   * [Float numbers](#float-numbers)
   * [Cleaner numbers](#writing-clearer-numbers-for-coders)
+* [Packages](#packages)
 * [Sequences in Python](#sequences-in-python)
   * [List and tuples](#lists-and-tuples)
   * [List comprehension](#list-comprehension)
   * [Generators](#generators)
-* [Docstrings and type hints](#docstrings-and-type-hints)
-* [Packages](#packages)
+* Functions
 
 ## Naming
 
@@ -81,6 +81,33 @@ True
 
 The use of the underscore for the number "1000" is a little overkill, but it's exceptional to see the example.
 <br/>I recommend integrating this behavior in your code for numbers with 5 digits or more.
+
+## Packages
+
+It is called a 'package' to some code that can be installed and imported for others to use in different python codes.
+If you are already familiar with other programming languages, you might know them as 'libraries'.
+
+An example of a very well-known and used package is [`numpy`](https://numpy.org/).
+You can install it in your python environment by using the next command:
+
+```commandline
+pip install numpy
+```
+
+The installing command can also be modified to specify some release requirements:
+* `pkg==X.Y.*`: This command will install the package version _'X.Y'_ with the latest _'Z'_ release version, updating it if called again.
+* `pkg==X.Y.Z`, `pkg>=X.Y.Z`,`pkg<=X.Y.Z`: These commands work with the mentioned 'X.Y.Z' release. However, the use of these commands will not update any already installed package. The ">", ">=", "<" and "<=" can be included within the same line, just like `pkg>=X.Y.Z,<X+1` (install a version higher or equal to "X.Y.Z" but lower than "X+1.any.any")
+* `pkg~=X.Y.Z`: Equivalent to `pkg>=X.Y.Z,<X.Y+1`. In other words, it will install an equal or higher version of "X.Y.Z" release but won't update.
+
+To add the package to your code, this one has to be at the beginning of the file preceded by the keyword 'import'.
+You can also add the keyword 'as' to import the package with a specific name.
+
+```python
+import numpy as np
+
+angle_degrees = 60
+angle_radians = np.deg2rad(angle_degrees)
+```
 
 ## Sequences in Python
 
@@ -183,29 +210,4 @@ The stored in memory value will be a function that will iterate over some items:
 Remember the functions `list()` and `tuple()` can be used to convert the object into a sequence.
 This I find helpful for debugging purposes.
 
-## Packages
 
-It is called a 'package' to some code that can be installed and imported for others to use in different python codes.
-If you are already familiar with other programming languages, you might know them as 'libraries'.
-
-An example of a very well-known and used package is [`numpy`](https://numpy.org/).
-You can install it in your python environment by using the next command:
-
-```commandline
-pip install numpy
-```
-
-The installing command can also be modified to specify some release requirements:
-* `pkg==X.Y.*`: This command will install the package version _'X.Y'_ with the latest _'Z'_ release version, updating it if called again.
-* `pkg==X.Y.Z`, `pkg>=X.Y.Z`,`pkg<=X.Y.Z`: These commands work with the mentioned 'X.Y.Z' release. However, the use of these commands will not update any already installed package. The ">", ">=", "<" and "<=" can be included within the same line, just like `pkg>=X.Y.Z,<X+1` (install a version higher or equal to "X.Y.Z" but lower than "X+1.any.any")
-* `pkg~=X.Y.Z`: Equivalent to `pkg>=X.Y.Z,<X.Y+1`. In other words, it will install an equal or higher version of "X.Y.Z" release but won't update.
-
-To add the package to your code, this one has to be at the beginning of the file preceded by the keyword 'import'.
-You can also add the keyword 'as' to import the package with a specific name.
-
-```python
-import numpy as np
-
-angle_degrees = 60
-angle_radians = np.deg2rad(angle_degrees)
-```
