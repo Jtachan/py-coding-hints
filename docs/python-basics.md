@@ -2,17 +2,15 @@
 
 In this section, you can find some hits and rules, which could be used anywhere in python.
 
-
 * [Naming](#naming)
 * [Math and numbers](#math-and-numbers)
   * [Float numbers](#float-numbers)
   * [Cleaner numbers](#writing-clearer-numbers-for-coders)
 * [Packages](#packages)
-* [Sequences in Python](#sequences-in-python)
+* [Sequences](#sequences)
   * [List and tuples](#lists-and-tuples)
   * [List comprehension](#list-comprehension)
   * [Generators](#generators)
-* Functions
 
 ## Naming
 
@@ -109,7 +107,7 @@ angle_degrees = 60
 angle_radians = np.deg2rad(angle_degrees)
 ```
 
-## Sequences in Python
+## Sequences
 
 ### Lists and Tuples
 
@@ -209,5 +207,3 @@ The stored in memory value will be a function that will iterate over some items:
 
 Remember the functions `list()` and `tuple()` can be used to convert the object into a sequence.
 This I find helpful for debugging purposes.
-
-
