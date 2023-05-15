@@ -12,7 +12,7 @@ In this section, you can find some hits and rules, which could be used anywhere 
   * [List comprehension](#list-comprehension)
   * [Generators](#generators)
 * [Docstrings and type hints](#docstrings-and-type-hints)
-* [Imports](#imports)
+* [Packages](#packages)
 
 ## Naming
 
@@ -224,49 +224,29 @@ Whenever the function `help()` is called over a function, this will return the d
 
 Working like this will also help you to create sturdier codes. There might be cases in which it is clearer what type must be used after writing the description in the docstring.
 
-## Imports
+## Packages
 
-Regarding imports, there are two main topics to always remember:
-- What is being imported
-- Should an alias be used
+It is called a 'package' to some code that can be installed and imported for others to use in different python codes.
+If you are already familiar with other programming languages, you might know them as 'libraries'.
 
-Whenever importing, it is highly recommended to import the package instead of the function to use.
-</br>**Example**: We want to use the function from numpy to convert numbers from degrees to radians. If we are running a very small script just for testing, the next might seem logical:
+An example of a very well-known and used package is [`numpy`](https://numpy.org/).
+You can install it in your python environment by using the next command:
 
-````python
-from numpy import deg2rad
+```commandline
+pip install numpy
+```
 
-radians = deg2rad(64.4)
-print(radians)
-# This will print "1.1239920382843482"
-````
+The installing command can also be modified to specify some release requirements:
+* `pkg==X.Y.*`: This command will install the package version _'X.Y'_ with the latest _'Z'_ release version, updating it if called again.
+* `pkg==X.Y.Z`, `pkg>=X.Y.Z`,`pkg<=X.Y.Z`: These commands work with the mentioned 'X.Y.Z' release. However, the use of these commands will not update any already installed package. The ">", ">=", "<" and "<=" can be included within the same line, just like `pkg>=X.Y.Z,<X+1` (install a version higher or equal to "X.Y.Z" but lower than "X+1.any.any")
+* `pkg~=X.Y.Z`: Equivalent to `pkg>=X.Y.Z,<X.Y+1`. In other words, it will install an equal or higher version of "X.Y.Z" release but won't update.
 
-However, when creating any code is will come the time in which more functions are needed from the same package. Importing the whole package prevents importing all these functions one by one. 
-
-Then, all imports are used as ``{package_name}.{function/class}``. This also improves the understanding of the code, showing clearly from which package comes the called function.
-
-````python
-import numpy
-
-radians = numpy.deg2rad(64.4)
-print(radians)
-# This will print "1.1239920382843482"
-
-array = numpy.array([radians])
-````
-
-This leads to the next issue: some modules contain inconvenient names to use, maybe because they are too complex to understand or a long path to call them.
-For it, Python includes the use of alias, allowing to rename an import by using the keyword ``as``.
-An alias is a very helpful tool to short anything, keep in mind that a strange combination of letters can also make the code uglier or harder to understand.
+To add the package to your code, this one has to be at the beginning of the file preceded by the keyword 'import'.
+You can also add the keyword 'as' to import the package with a specific name.
 
 ```python
 import numpy as np
 
-radians = np.deg2rad(64.4)
-print(radians)
-# This will print "1.1239920382843482"
+angle_degrees = 60
+angle_radians = np.deg2rad(angle_degrees)
 ```
-
-Do not be afraid of using alias. I recommend using aliases within the next cases:
-- To rename the import to a word clear to understand
-- To rename the import into a maximum 3-character combination that relates to the package name, like ``import dataclasses as dtc``
