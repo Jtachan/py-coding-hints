@@ -9,6 +9,9 @@ In this module, you will learn these guidelines I recommend for keeping codes ma
 
 **Content**
 * [Naming conventions](#naming-conventions)
+  * [Variables](#variables)
+  * [Functions](#functions)
+  * [Classes](#classes)
 * [Packages](#packages)
 * [Sequences](#sequences)
   * [List and tuples](#lists-and-tuples)
@@ -40,7 +43,7 @@ It does not look so clear at first sight what the code is estimating.
 If the names used for `res` and `temp` are renamed correctly, the equation is then self-explanatory.
 
 ```python
-celsius = (farenheit - 32) / 1800
+celsius = (fahrenheit - 32) / 1800
 ```
 
 **Shortening names**
@@ -81,11 +84,61 @@ for number in range(10):
     print(number)
 ```
 
+### Functions
 
-1. **Do not shorten names**: While very long names are to be avoided, it is very helpful to use names like `vector_state` instead of `vec_st` or `lines_in_file` instead of `lf`. These short names might look understandable enough for you (the main developer), but not for the next one that works under the same code. There are very few exceptions (mainly for prefixes), like the use of `nof_` for `number_of_`.
-2. **Use meaningful names**: This applies to everything. For example, after an operation do not use `res` nor `result`, because it does not show what the variable is holding. However, `predicted_speed` shows a very clear understanding of what it holds without looking further into the code.
-3. **Function and methods names**: They should be named after the operation they pretend to work on. It is expected that the function `serialize_numpy_for_json(numpy_element)` will check the given element and transform it into Json serializable, due numpy elements are not serializable into Json without any modification.
-4. **Variables and properties**: They should be named after the value they return. While this is clear for a variable, a class property might perform some operation before returning the result, do not be confused by it. E.G.: The class `Circle` should not contain the property `Circle.calculate_area`, but instead the `Circle.area` or even the method `Circle.calculate_area()`.
+While following the previous naming conventions, explained for the variables, functions should be named as the operation or action to carry.
+
+Functions might also require of given parameters.
+Each parameter should be clearly named as if it was a variable.
+
+```python
+def convert_fahrenheit_to_celsius(fahrenheit):
+    celsius = (fahrenheit - 32) / 1800
+    return celsius
+```
+
+### Classes
+
+Python classes are a great way to keep code organized.
+They are to be defined whenever you are looking for an instance that allows one or multiple of the following:
+- Holding multiple types of information (mostly related).
+- Provinding opertations on extra variables and the stored information.
+- Creating a basic structure for multiple structures
+
+**Classes** are to be named as the structure that the instance will hold.
+Its **methods** follow the same naming conventions as the functions, as they are 'functions' that use information stored within the class.
+Any **property** and **attribute** follow the variable's naming conventions, as they are 'variables' stored within the class.
+
+Let's take a 'Circle' class as an example, that can hold attributes and properties:
+
+```python
+import numpy as np
+
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+
+    @property
+    def radius(self):
+        return self.__radius
+
+    @property
+    def diameter(self):
+        return self.__radius * 2
+
+    @property
+    def area(self):
+        return self.__radius * 2 * np.pi
+
+
+my_circle = Circle(3.5)
+print(my_circle.radius)  # This prints '3.5'
+print(my_circle.diameter)  # This prints '7.0'
+print(my_circle.area)  # This prints '21.991148575128552'
+```
+
+Note that the property `Circle.area` is actually a "function" that calculates the area of the circle.
+However, due it is accessible as an attribute, it should not be named as an action, but as the value it returns.
 
 ## Packages
 
