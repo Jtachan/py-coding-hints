@@ -15,6 +15,9 @@ In this module, you will learn these guidelines I recommend for keeping codes ma
 * [Documenting your project](#documenting-your-project)
   * [Type hints](#type-hints)
   * [Docstrings](#docstrings)
+* [Organizing your project](#organizing-your-project)
+  * [Project's files](#projects-files)
+  * [Easy imports](#easy-imports)
 
 ## Naming conventions
 
@@ -100,14 +103,14 @@ def convert_fahrenheit_to_celsius(fahrenheit):
 Python classes are a great way to keep code organized.
 They are to be defined whenever you are looking for an instance that allows one or multiple of the following:
 - Holding multiple types of information (mostly related).
-- Provinding opertations on extra variables and the stored information.
+- Providing operations on extra variables and the stored information.
 - Creating a basic structure for multiple structures
 
 **Classes** are to be named as the structure that the instance will hold.
 Its **methods** follow the same naming conventions as the functions, as they are 'functions' that use information stored within the class.
 Any **property** and **attribute** follow the variable's naming conventions, as they are 'variables' stored within the class.
 
-Let's take a 'Circle' class as an example, that can hold attributes and properties:
+Let's take a 'Circle' class as an example that can hold attributes and properties:
 
 ```python
 import numpy as np
@@ -130,9 +133,9 @@ class Circle:
 
 
 my_circle = Circle(3.5)
-print(my_circle.radius)  # This prints '3.5'
-print(my_circle.diameter)  # This prints '7.0'
-print(my_circle.area)  # This prints '21.991148575128552'
+print(my_circle.radius)  # This prints 3.5
+print(my_circle.diameter)  # This prints 7.0
+print(my_circle.area)  # This prints 21.991148575128552
 ```
 
 Note that the property `Circle.area` is actually a "function" that calculates the area of the circle.
@@ -154,12 +157,12 @@ Specifying a **variable or parameter** is done by using `: {type}` after the nam
 number: int = 0  # 'number' is an integer
 
 def convert_fahrenheit_to_celsius(fahrenheit: float):
-    # 'fahrenheit' is to be a float, although integers are also accepted
+    # 'Fahrenheit' is to be a float, although integers are also accepted
     celsius = (fahrenheit - 32) / 1800
     return celsius
 ```
 
-**Return types** are used for specifying the type of the value(s) a function, method or property will return.
+**Return types** are used for specifying the type of the value(s) a function, method, or property will return.
 It is specified by using `-> {type}`.
 
 ```python
@@ -201,17 +204,17 @@ This case is covered within docstrings.
 ```python
 def convert_fahrenheit_to_celsius(fahrenheit: float) -> float:
     """
-    This function converts the given fahrenheit degrees into celsius.
+    This function converts the given Fahrenheit degrees into celsius.
     
     Parameters
     ----------
     fahrenheit: float
-        The temperature given in fahrenheit.
+        The temperature given in Fahrenheit.
         
     Returns
     -------
     celsius: float
-        The temperature in celsius.
+        The temperature in Celsius.
     """
     celsius = (fahrenheit - 32) / 1800
     return celsius
@@ -219,3 +222,100 @@ def convert_fahrenheit_to_celsius(fahrenheit: float) -> float:
 
 It might seem like redundant information specifying the types with both type hints and docstrings, but it is not.
 Consider that type hints are mostly a use for the programmer using the IDE, while docstrings are the documentation the programmer can read to get informed about a class, function, property, method or any other.
+
+## Organizing your project
+
+### Project's files
+
+Just like with the code, keeping a good project structure is an exceptional practice to keep your project maintainable in the future.
+
+Taking up the [project structure](package-development.md#project-structure) specified in the 'package development' module, all code should be contained within the same folder defined as 'package_name'.
+For the sake of the explanation, we will temporarily ignore any other folder in that graph.
+
+The best way to organize your code is maintaining multiple files.
+These files also follow some rules to prevent the whole project evolving into a jungle of files:
+
+Standalone **functions** can be organized in modules, with each module specifying what contains. 
+For example, it would be expected to have only math related code in a module named `math_functions.py`.<br>
+Avoid having modules like `misc.py` or `func.py`, just to keep everything in a better organization.
+
+When possible, the code should be **organized in python classes** and then, create a module per class.
+Taking the previous example of a class named `Circle`, this would be expected to be stored in a module `circle.py`.<br>
+While classes are named in _CamelCase_, modules should be named in _snake_case_.
+If the class had been `MyCircle`, the module's name would have been `my_circle.py`
+
+Regarding command line interface, I personally find useful creating a new module named `_cli.py`.
+This contains all needed functions that are called only through the command line interface.
+
+### Easy imports
+
+You may have noticed this `__init__.py` file from time to time, if you have some experience in Python.
+This module exists to convert a conjunction of python files into a package.
+However, it also allows to easily import the package content without the need of importing every single module from it.
+
+Let's take, for example, the following package structure:
+
+```commandline
+Project
+|-> math_figures\
+    |    |-> __init__.py
+    |    |-> circle.py
+    |    |-> square.py
+    |    |-> triangle.py
+```
+
+Without the help of `__init__.py`, the following is one possibility of how the imports would look:
+
+```python
+from math_figures.circle import Circle
+from math_figures.square import Square
+from math_figures.triangle import Triangle
+
+if __name__ == "__main__":
+    my_circle = Circle(...)
+    my_square = Square(...)
+    my_triangle = Triangle(...)
+```
+
+The first help that `__init__.py` provides us (even if we do not code anything within it) is to be able to import the whole package.
+This cleans a lot of the imports:
+
+```python
+import math_figures
+
+if __name__ == "__main__":
+    my_circle = math_figures.circle.Circle(...)
+    my_square = math_figures.square.Square(...)
+    my_triangle = math_figures.triangle.Triangle(...)
+```
+
+However, this solution is still not the best one, as very long paths are required every time we decide to create a new instance from those classes.
+
+The **best solution** is to move these long-path imports into the `__init__.py` module.
+
+```python
+# This is the __init__.py module
+from math_figures.circle import Circle
+from math_figures.square import Square
+from math_figures.triangle import Triangle
+
+__all__ = ["Circle", "Square", "Triangle"]
+```
+
+With those imports coded there, now all the classes can be directly imported into any other file from the module level:
+
+```python
+# Case 1: importing all the classes at the top level
+from math_figures import Circle, Square, Triangle
+
+# Case 2: importing the module only
+import math_figures
+
+my_circle = math_figures.Circle(...)
+my_square = math_figures.Square(...)
+my_triangle = math_figures.Triangle(...)
+```
+
+❗Please remember:<br>
+Easy imports are to be used **from the outside of a package**.
+If you start using them also from within, nothing will stop you, but you may come to the situation in which your code will not compile due to circular imports.
