@@ -140,6 +140,51 @@ print(my_circle.area)  # This prints '21.991148575128552'
 Note that the property `Circle.area` is actually a "function" that calculates the area of the circle.
 However, due it is accessible as an attribute, it should not be named as an action, but as the value it returns.
 
+## Documenting your project
+
+Documenting is very important, not only to understand how the tool should behave but also what it needs in order to work.
+While a user would only need a `README.md` file, keeping your code properly documented also allows them to understand if they are using anything wrong.
+
+### Type hints
+
+Type hints define the type of where it is being specified.
+They mostly specify types for variables and parameters and return types for functions.
+Additionally, they also help you in the future with the auto-completion tool from your IDE.
+
+Specifying a **variable or parameter** is done by using `: {type}` after the name and before defining any value.
+
+```python
+number: int = 0  # 'number' is an integer
+
+def convert_fahrenheit_to_celsius(fahrenheit: float):
+    # 'fahrenheit' is to be a float, although integers are also accepted
+    celsius = (fahrenheit - 32) / 1800
+    return celsius
+```
+
+**Return types** are used for specifying the type of the value(s) a function, method or property will return.
+It is specified by using `-> {type}`.
+
+```python
+def convert_fahrenheit_to_celsius(fahrenheit: float) -> float:
+    celsius = (fahrenheit - 32) / 1800
+    return celsius
+```
+
+For certain types, Python contains a built-in package called [`typing`](https://docs.python.org/3/library/typing.html).
+It contains multiple types which are not specified in python itself, as it happens with `int` or `float`.
+
+```python
+from typing import List
+
+def print_even_numbers(numbers: List[int]):
+    # 'numbers' is a list full of integers
+    for number in numbers:
+        if number % 2 == 0:
+            print(number)
+```
+Please take a deeper look into `typing`, as it won't be fully covered in this project.
+
 ## Packages
 
 It is called a 'package' to some code that can be installed and imported for others to use in different python codes.

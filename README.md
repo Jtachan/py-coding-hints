@@ -23,7 +23,12 @@ Here are also some online tools, which can help depending on the python script t
 ## Table of content
 
 * [**Python clean coding**](docs/clean-coding.md)
-  * [Naming](docs/clean-coding.md#naming-conventions)
+  * [Naming conventions](docs/clean-coding.md#naming-conventions)
+    * [Variables](docs/clean-coding.md#variables)
+    * [Functions](docs/clean-coding.md#functions)
+    * [Classes](docs/clean-coding.md#classes)
+  * [Documenting your project](docs/clean-coding.md#documenting-your-project)
+    * [Type hints](docs/clean-coding.md#type-hints)
   * [Packages](docs/clean-coding.md#packages)
   * [Sequences](docs/clean-coding.md#sequences)
 * [**Package development**](docs/package-development.md)
