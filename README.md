@@ -22,11 +22,10 @@ Here are also some online tools, which can help depending on the python script t
 
 ## Table of content
 
-* [**Python basics**](docs/python-basics.md)
-  * [Naming](docs/python-basics.md#naming)
-  * [Math](docs/python-basics.md#math-and-numbers)
-  * [Packages](docs/python-basics.md#packages)
-  * [Sequences](docs/python-basics.md#sequences)
+* [**Python clean coding**](docs/clean-coding.md)
+  * [Naming](docs/clean-coding.md#naming-conventions)
+  * [Packages](docs/clean-coding.md#packages)
+  * [Sequences](docs/clean-coding.md#sequences)
 * [**Package development**](docs/package-development.md)
   * [Installation](docs/package-development.md#installation)
   * [Project structure](docs/package-development.md#project-structure)

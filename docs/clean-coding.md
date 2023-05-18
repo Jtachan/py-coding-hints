@@ -1,84 +1,91 @@
-# Python Basics
+# Python Clean Coding
 
-In this section, you can find some hits and rules, which could be used anywhere in python.
+When we are working on a python code, whether it is a script or a bigger project, it is only a matter of time for us to come back at it.
+No matter the reason, if some time has passed, it is very likely that we won't remember as well as before what the code was supposed to do.
+Keeping a coding project **maintainable** means that not only we will be able to come back at it in the future to apply fixes and new features, but also that other people can do the same.
+However, there are a few guidelines to follow in order to do so.
 
-* [Naming](#naming)
-* [Math and numbers](#math-and-numbers)
-  * [Float numbers](#float-numbers)
-  * [Cleaner numbers](#writing-clearer-numbers-for-coders)
+In this module, you will learn these guidelines I recommend for keeping codes maintainable and clean coding it.
+
+**Content**
+* [Naming conventions](#naming-conventions)
 * [Packages](#packages)
 * [Sequences](#sequences)
   * [List and tuples](#lists-and-tuples)
   * [List comprehension](#list-comprehension)
   * [Generators](#generators)
 
-## Naming
+## Naming conventions
 
-While the general naming conventions to follow are the ones specified at the [Google styleguide](https://google.github.io/styleguide/pyguide.html#s3.16-naming), there are a few additions which don't break the convention and improve the code readability and maintenance:
+General naming conventions to follow are the ones specified at the [Google styleguide](https://google.github.io/styleguide/pyguide.html#s3.16-naming).
+These following are some additions and clarifications.
+
+### Variables
+
+**Use meaningful names**
+
+Variables tend to store information.
+It is crucial that we know what information it stores in order to:
+- Use this information whenever it is needed
+- The information is not stored/estimated multiple times at different places
+
+For example, people can be tempted to use `res` or `result` to store the information of a mathematical expression, among many other possibilities.
+Let's take the following expression:
+
+```python
+res = (temp - 32) / 1800
+```
+
+It does not look so clear at first sight what the code is estimating.
+If the names used for `res` and `temp` are renamed correctly, the equation is then self-explanatory.
+
+```python
+celsius = (farenheit - 32) / 1800
+```
+
+**Shortening names**
+
+Using "meaningful names" also applies to avoid shortening names too much.
+At the previous example, `temp` is also confusing as it is a highly used word for temporary variables.
+However, in this case it is referred to `temperature`.
+
+Shorting names in general is implemented to prevent very long lines.
+Nowadays, we have wider screens and better methods to prevent this.
+While there are still cases to shorten names, this is a practice to avoid.
+
+For example, the variable `vec_st` is brief, but it might be unclear what it refers to by a quick glimpse.
+Using `vector_state` is not that long and clarifies a lot the meaning.
+
+There are still some short names that are used, like `temp` for "temporal variable" or `nof_` (prefix) for "number of --".
+Feel free to use any of them or to create your own rules, as long as:
+- You remain consistent with your rules.
+- They do not affect any case at the understanding of the variable's content.
+
+**Avoid single-character names**
+
+Names like `i`, `j` or `v` tend to create many [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)).
+These must be avoided, as they can turn against us in the future.<br>
+Within these three named variables, `v` could refer to `velocity`, `vector`, `volume` or just anything not related to any keyword.
+
+A clear example where these can be used is the "for-loop" that any coding teacher shows:
+```python
+# This loop iterates over the range of numbers [0, 10) and prints the number
+for i in range(10):
+    print(i)
+```
+
+While this seems like a basic example, it costs no effort to correctly name to understand better what is holds:
+
+```python
+for number in range(10):
+    print(number)
+```
+
 
 1. **Do not shorten names**: While very long names are to be avoided, it is very helpful to use names like `vector_state` instead of `vec_st` or `lines_in_file` instead of `lf`. These short names might look understandable enough for you (the main developer), but not for the next one that works under the same code. There are very few exceptions (mainly for prefixes), like the use of `nof_` for `number_of_`.
 2. **Use meaningful names**: This applies to everything. For example, after an operation do not use `res` nor `result`, because it does not show what the variable is holding. However, `predicted_speed` shows a very clear understanding of what it holds without looking further into the code.
 3. **Function and methods names**: They should be named after the operation they pretend to work on. It is expected that the function `serialize_numpy_for_json(numpy_element)` will check the given element and transform it into Json serializable, due numpy elements are not serializable into Json without any modification.
 4. **Variables and properties**: They should be named after the value they return. While this is clear for a variable, a class property might perform some operation before returning the result, do not be confused by it. E.G.: The class `Circle` should not contain the property `Circle.calculate_area`, but instead the `Circle.area` or even the method `Circle.calculate_area()`.
-
-## Math and numbers
-
-### Float numbers
-
-Float numbers are those that contain decimals.
-While this is a basic idea, it is crucial to understand all the characteristics that come into them.
-
-When working with floats:
-* Any mathematical operation containing floats will return always a float.
-* They can be converted to integers by using `int()`. If so, the truncated value is returned.
-* Two floats can never be directly compared by `==`
-
-The third point needs a little bit of explanation.
-Due to how Python handles floats, it is never a good idea to compare two of them with `==` to see if they are equal.
-Instead, you should compare if **the difference** is lower than a defined threshold.
-
-```python
-# This is correct for comparing integers
->>> a, b, c = 1, 2, 3
->>> print(a + b == c)
-True
-
-# This is incorrect for comparing floats
->>> a, b, c = 0.1, 0.2, 0.3
->>> print(a + b == c)
-False
-# We can check what is being calculated as the sum of 0.1 and 0.2
->>> print(a + b)
-0.30000000000000004
-
-# This is correct for comparing floats
->>> a, b, c = 0.1, 0.2, 0.3
->>> print(abs(a + b - c) < 1e-6)
-True
-```
-
-### Writing clearer numbers for coders
-
-When coding numbers, sometimes large values are required.
-Let's take, for example, we want to use `1000` instead of `1e3`.
-In theory, they are both the same value, but in practise `1000` is type `int` while `1e3` is type `float`, so they are different for Python.
-
-When coding a clean code, numbers can also be set with underscore "_".
-This can be used to separate the numbers in pairs or like a point (european point on numbers).
-That allows achieving behaviours like the next code:
-
-```commandline
->>> number1 = 1000
->>> number2 = 1_000
->>> print(number1 == number2)
-True
->>> number3 = 10_00
->>> print(number2 == number3)
-True
-```
-
-The use of the underscore for the number "1000" is a little overkill, but it's exceptional to see the example.
-<br/>I recommend integrating this behavior in your code for numbers with 5 digits or more.
 
 ## Packages
 
