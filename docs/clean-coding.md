@@ -12,11 +12,9 @@ In this module, you will learn these guidelines I recommend for keeping codes ma
   * [Variables](#variables)
   * [Functions](#functions)
   * [Classes](#classes)
-* [Packages](#packages)
-* [Sequences](#sequences)
-  * [List and tuples](#lists-and-tuples)
-  * [List comprehension](#list-comprehension)
-  * [Generators](#generators)
+* [Documenting your project](#documenting-your-project)
+  * [Type hints](#type-hints)
+  * [Docstrings](#docstrings)
 
 ## Naming conventions
 
@@ -149,7 +147,6 @@ While a user would only need a `README.md` file, keeping your code properly docu
 
 Type hints define the type of where it is being specified.
 They mostly specify types for variables and parameters and return types for functions.
-Additionally, they also help you in the future with the auto-completion tool from your IDE.
 
 Specifying a **variable or parameter** is done by using `: {type}` after the name and before defining any value.
 
@@ -185,130 +182,40 @@ def print_even_numbers(numbers: List[int]):
 ```
 Please take a deeper look into `typing`, as it won't be fully covered in this project.
 
-## Packages
+Additionally, type hints also help you in the future with the auto-completion tool from your IDE.
+At this last example, `numbers` is defined as a list.
+Then, if we type `numbers.` our IDE should open a prompt of many options to choose, like the functions `append()` or `pop()`.
 
-It is called a 'package' to some code that can be installed and imported for others to use in different python codes.
-If you are already familiar with other programming languages, you might know them as 'libraries'.
+They also help to prevent mistakes.
+With the same example, if someone tries to use `print_even_numbers(numbers=2)` then the IDE should complain, as '2' is an integer and not a list.
 
-An example of a very well-known and used package is [`numpy`](https://numpy.org/).
-You can install it in your python environment by using the next command:
 
-```commandline
-pip install numpy
-```
+### Docstrings
 
-The installing command can also be modified to specify some release requirements:
-* `pkg==X.Y.*`: This command will install the package version _'X.Y'_ with the latest _'Z'_ release version, updating it if called again.
-* `pkg==X.Y.Z`, `pkg>=X.Y.Z`,`pkg<=X.Y.Z`: These commands work with the mentioned 'X.Y.Z' release. However, the use of these commands will not update any already installed package. The ">", ">=", "<" and "<=" can be included within the same line, just like `pkg>=X.Y.Z,<X+1` (install a version higher or equal to "X.Y.Z" but lower than "X+1.any.any")
-* `pkg~=X.Y.Z`: Equivalent to `pkg>=X.Y.Z,<X.Y+1`. In other words, it will install an equal or higher version of "X.Y.Z" release but won't update.
+Docstrings are an organized definition of a function and the parameters it needs.
+While there are different types of them, I personally like [**numpy docstrings**](https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard) and will be using them for the examples.
 
-To add the package to your code, this one has to be at the beginning of the file preceded by the keyword 'import'.
-You can also add the keyword 'as' to import the package with a specific name.
+You must have noticed that, in the 'type hints' section, the first line I added in the functions is a comment clarifying the parameter type.
+This case is covered within docstrings.
 
 ```python
-import numpy as np
-
-angle_degrees = 60
-angle_radians = np.deg2rad(angle_degrees)
+def convert_fahrenheit_to_celsius(fahrenheit: float) -> float:
+    """
+    This function converts the given fahrenheit degrees into celsius.
+    
+    Parameters
+    ----------
+    fahrenheit: float
+        The temperature given in fahrenheit.
+        
+    Returns
+    -------
+    celsius: float
+        The temperature in celsius.
+    """
+    celsius = (fahrenheit - 32) / 1800
+    return celsius
 ```
 
-## Sequences
-
-### Lists and Tuples
-
-**[Lists](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)** are "arrays" of data, which can be modified by deleting items, adding new or modifying them.
-Lists are defined with brackets `[]` containing all the items. 
-The build-in function `list()` can also be called to transform a sequence into a list.
-
-**Tuples** can be understood as lists that are not modifiable.
-They are defined with parenthesis `()` containing all the items. 
-There is also a build-in function `tuple()` to convert a sequence into a tuple.
-
-In Python, it is possible to **iterate** over sequences without using any indexing:
-
-```python
->>> numbers = (1, 2, 3)
->>> for n in numbers:
-...    print(n)
-1
-2
-3
-```
-
-### List comprehension
-
-List comprehension allows creating lists with fewer lines of code.
-
-Let's take the example we want to create a list with the letters of a word.
-While we could iterate with a for-loop over the whole word to create the list (which is a valid solution),
-a list comprehension would create the list in only one line of code:
-
-````python
-word = "python"
-
-# No use of the list comprehension
-letters = []
-for letter in word:
-    letters.append(letter)
-print(letters)
-# This prints ["p", "y", "t", "h", "o", "n"]
-
-# Use of list comprehension
-letters = [letter for letter in word]
-print(letters)
-# This prints ["p", "y", "t", "h", "o", "n"]
-````
-
-### Generators
-
-While generators are not a sequence _per se_, we can think of them as one for iterating purposes.
-It is very recommended to use them in applications to save memory for very large sets of information.
-
-For example, we want to design a function that returns all lines in a text document.
-Knowing everything explained in this section, this could easily be done creating a list:
-
-````python
-def listed_lines_in_document(file_path):
-    with open(file_path) as file:
-        all_lines = file.readlines()
-    return all_lines
-````
-
-This function returns all lines of the document in a sequence.
-While the purpose is fulfilled, very large documents will be inconvenient in the used memory.
-
-A **generator** will return all lines one by one, without storing them anywhere.
-This means once we iterate over the next item, the previous one is lost.
-Generators can be defined in functions by using `yield` instead of return.
-
-```python
-def listed_lines_in_document(file_path):
-    with open(file_path) as file:
-        for line in file.readlines():
-          yield line
-```
-
-If it is still hard for you to understand generators, comparing them to functions is a good way to understand them better:
-
-| Functions                                  | Generators                                                |
-|--------------------------------------------|-----------------------------------------------------------|
-| Use the keyword `return`                   | Use the keyword `yield`                                   |
-| The code stops after one value is returned | The code stops when it reaches the end of the coded logic |
-
-At last, generators can also be defined similar to the list comprehension.
-The stored in memory value will be a function that will iterate over some items:
-
-```python
->>> numbers = (n for n in range(3))
->>> print(numbers)
-<generator object <genexpr> at 0x000002F92972DD20>
-
->>> for number in numbers:
-...    print(number)
-1
-2
-3
-```
-
-Remember the functions `list()` and `tuple()` can be used to convert the object into a sequence.
-This I find helpful for debugging purposes.
+It might seem like redundant information specifying the types with both type hints and docstrings, but it is not.
+Consider that type hints are mostly a use for the programmer using the IDE, while docstrings are the documentation the programmer can read to get informed about a class, function, property, method or any other.
