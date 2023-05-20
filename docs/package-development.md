@@ -5,7 +5,6 @@ The word "Packages" defines every file and module that contains a set of files a
 In this document, you will understand the basics about the parts of a package and how to work with it. You will also find links to other sections and files.
 
 **Table of contents**
-* [Installation](#installation)
 * [Project structure](#project-structure)
   * [Setup file](#setuppy-file)
   * [Package folder](#package-folder)
@@ -14,21 +13,9 @@ In this document, you will understand the basics about the parts of a package an
   * [Examples](#examples-folder)
   * [Linting](#linting-files)
 * [Pipeline for development](#pipeline-for-development)
+* [Modules](#modules)
+* [Easy imports](#implementing-easy-imports)
 * [Releasing](#releasing)
-
-## Installation
-
-Whenever a user decides to install a package, this can be done via `pip` commands. Let's take numpy as an example:
-
-```commandline
-pip install numpy
-```
-
-There are cases in which we decide to create our own package. In these cases, a `setup.py` file is required. This file is what makes our code installable and importable, just like we could do with others like `numpy`. To install any local changes, the command to use is the following:
-
-```commandline
-pip install .
-```
 
 ## Project structure
 
