@@ -175,10 +175,10 @@ For certain types, Python contains a built-in package called [`typing`](https://
 It contains multiple types which are not specified in python itself, as it happens with `int` or `float`.
 
 ```python
-from typing import List
+from typing import Sequence
 
-def print_even_numbers(numbers: List[int]):
-    # 'numbers' is a list full of integers
+def print_even_numbers(numbers: Sequence[int]):
+    # 'numbers' is a list or tuple full of integers
     for number in numbers:
         if number % 2 == 0:
             print(number)
@@ -186,11 +186,11 @@ def print_even_numbers(numbers: List[int]):
 Please take a deeper look into `typing`, as it won't be fully covered in this project.
 
 Additionally, type hints also help you in the future with the auto-completion tool from your IDE.
-At this last example, `numbers` is defined as a list.
+At this last example, `numbers` is defined as a list or a tuple.
 Then, if we type `numbers.` our IDE should open a prompt of many options to choose, like the functions `append()` or `pop()`.
 
 They also help to prevent mistakes.
-With the same example, if someone tries to use `print_even_numbers(numbers=2)` then the IDE should complain, as '2' is an integer and not a list.
+With the same example, if someone tries to use `print_even_numbers(numbers=2)` then the IDE should complain, as '2' is an integer and not a sequence.
 
 
 ### Docstrings
