@@ -57,7 +57,7 @@ max-line-length = 88
 profile = black
 ````
 
-These are two profiles, regarding a linter (flake8) and a formatter (isort).
+These are two profiles, regarding a linter (`flake8`) and a formatter (`isort`).
 Without these profiles, the first thing you would encounter (if you try to run all the linters and formatters at once) are the following problems:
 * `isort` and `black` will always reformat your files, as they have different base profiles configuration.
 * After the `black` reformat (line length = 88 characters by default), `flake8` might complain you have many lines which are longer than 80 characters (if you are still using the default configuration)
@@ -160,6 +160,10 @@ tox -e linters
 
 This will run only the "linters" profile.
 I do not advise doing this to run all the linters, as it will create a new temporary environment only for that, and it will always be faster to run the commands in the working virtual environment.
+
+You can also create a `.bat` file (for Windows) to call it and run sequentially these commands.
+This is what I usually do, and I provide you this file at `helpful_files\check_code.bat`, which you can open with a text editor and modify if needed.
+To run it, you just need to give its path in the command line interface.
 
 Now you know the basics about `tox`.
 I encourage you to look at their documentation to find even more features:
