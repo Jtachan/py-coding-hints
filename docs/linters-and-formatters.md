@@ -18,20 +18,95 @@ pip install -r dev_requirements.txt
 ```
 
 From this point on, the document will assume you have installed all of them.
+Also, 
 
 ## Formatters
 Formatters are codes to run to always keep your code within under some style rules.
 These rules, for example, can specify the line length or how to format long in-brackets statements.
 
+The following formatters do not require any configuration file, thus they are mostly configured with commands whenever they are called.
+
 ### Black
+
+[`black`](https://black.readthedocs.io/en/stable/index.html) will check mainly for a correct line length, not exceeding the specified limit (88 character-line-length by default).
+If any line exceeds it, the program will automatically reformat it into multiple lines.
+You can also specify another line length:
+
+```commandline
+black --line-length 120 folder_path
+```
+
+If instead you give the `--check` command, the files will not be reformatted.
+Instead, it will print if all files are ok or some should be reformatted.
+This is actually pretty neat to put as a check state for your repo, to be done every time new changes are pushed:
+```commandline
+black --check file.py
+```
+
+Check the documentation, as it is capable of more.
+<br>https://black.readthedocs.io/en/stable/index.html
 
 ### isort
 
+[`isort`](https://pycqa.github.io/isort/) takes the name from "imports sorting".
+Its main functionality, as you can guess, is to sort the imports from the specified file or from all the files within one specified folder.
+```commandline
+isort folder_path
+```
+
+Just like `black`, it also has the line length and the check commands.
+
+Check the documentation, as it is capable of more.
+<br>https://pycqa.github.io/isort/
+
 ## Linters
+
+Linters will check your code structure and will warn you whenever there are inconsistencies.
+
+For example, let's suppose you want to add a try/except for checking if a key is within a dictionary:
+
+```python
+try:
+    value = my_dict[key]
+    value += 1/0
+except:
+    print(f"'{key}' is not in the dictionary")
+```
+
+Your linters will complain here, as using only 'except' is a very broad case.
+In other words, that 'except' statement will catch any error and run the 'print'.
+
+If you have experience in python, you will know the problem here:
+The dictionary might have the given key, but python will raise `ZeroDivisionError` and the 'except' block will catch it.
+Instead, that line should be `except KeyError`.
+
+This is but only one example of why linters will help you find inconsistencies in your code.
 
 ### flake8
 
+[`flake8`](https://flake8.pycqa.org/en/latest/) is a rapid-run linter.
+Just as `black` and `isort`, it doesn't need any configuration file and everything is configured by commands.
+
+Its default profile runs for 80 character-line-length.
+```commandline
+flake8 file.py
+```
+
 ### pylint
+
+[`pylint`](https://pylint.readthedocs.io/en/latest/user_guide/usage/run.html) will check within your code for very specific rules, like namings, maximum parameters in a function/method or maximum lines within a module, among many others.
+
+For it, this will take a configuration file (usually named `pylintrc`) in where everything is defined.
+You can find a template of it within [`helpful_files\pylintrc`](../helpful_files/pylintrc).
+If you have one, you'll need to specify where it lays with the command `--rcfile`.
+Otherwise, it will take a default in-build to pylint configuration.
+
+```commandline
+pylint --rcfile=pylintrc file.py
+```
+
+One very cool feature I believe it has for beginners is that it will return you a score on your own code, which will push you to always improve your code quality.
+
 
 ## Profiling (tox)
 
