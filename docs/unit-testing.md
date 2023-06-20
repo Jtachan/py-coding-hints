@@ -10,6 +10,7 @@ This document is based for `pytests`, although the first section will show you t
 - [Pytest Vs Unittest](#pytest-vs-unittest)
 - [Essentials](#essentials)
 - [Pytest useful features](#pytest-useful-features)
+- [GitHub integration](#github-integration)
 
 ## Pytest Vs Unittest
 
@@ -205,3 +206,145 @@ def test_even_numbers(number):
     pytest.mark.skipif(number % 2 != 0)
     ...
 ````
+
+## GitHub integration
+
+While testing your package locally is a splendid practice, it can only take you so far.
+The best scenario for testing requires:
+* Multiple python environments for checking backwards compatibility.
+* Multiple OS environments for checking systems compatibility.
+* As many random scenarios as possible to encounter problems you didn't think about at the start.
+
+The first point can be done locally, although it is very inefficient to have multiple environments just for testing.
+The second also can still be done if you don't mind having a virtual machine or a partition only for testing (although you have to be mad to do it).
+The last is the easiest to do, but it also will take a lot of computational power to run the same test multiple times without much need.
+
+Integrating your test in GitHub allows you to do all this simultaneously.
+If any fails, you will see this on your branch status.
+You can also set a badge which shows the satus (passing or failing) of your tests to the readme.
+
+### GitHub actions setup
+
+**First** you have to create, within the main project folder, a `.github` folder, containing a `workflows` folder.
+These names cannot be modified.
+
+```commandline
+PROJECT
+|-> src/
+|-> Readme.md
+| ...
+|-> .github/
+    |-> workflows/
+```
+
+Within `.github/workflows/` you can create all .yml configuration files for the actions.
+You can look at a template for running tests within [`helpful_files/gh_actions_test.yml`](../helpful_files/gh_actions_tests.yml).
+
+### Understanding the action files
+
+Taking as an example of the previous named file, let's see step by step what the file contains:
+
+```yaml
+name: Tests
+```
+
+This is the name to be displayed at both the GitHub jobs and the final badge.
+
+```yaml
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["master", "develop"]
+```
+
+This means that the actions will be performed for:
+- All pushes into any branch
+- All pull requests open to be merged into "master" or "develop"
+
+Consider which scenarios are the ones that you actually want to have your actions run.
+Maybe you don't need them to run at every single push at all the branches, or maybe you don't require them to run within the pull requests.
+
+```yaml
+jobs:
+  build:
+    ...
+```
+
+This section is where the magic happens.
+Here are named all jobs to be run as GitHub actions.
+In this case, there is only one named 'build'.
+Feel free to add as many jobs and name them as you desire.
+As an alternative, you can always add different .yml files if you feel insecure of adding other jobs.
+
+```yaml
+jobs:
+  build:
+    
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        
+    ...
+```
+
+**runs-on** specifies the operating system that will be taken for the jobs. This is usually `ubuntu-latest`  or `windows-latest`.
+
+**strategy** sets the strategy to follow to create multiple environments. 
+In this case, a matrix of multiple OS and python versions is being defined.
+
+As a result, 8 different virtual environments will be created: 4 for Ubuntu and 4 for Windows.
+All of then will be running in parallel.
+
+```yaml
+jobs:
+  build:
+    
+    runs-on: 
+      ...
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+    
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest .
+      - name: Run unittests
+        run: pytest unittests
+```
+
+The last part is `steps`, where all the steps to run are defined.
+Each step is defined by `-` to create a list of steps:
+- The first step checks out the current branch
+- The second, creates the python environment defined by the matrix state
+- The third installs pytest and '.' (current directory)
+- At last, pytest is run over the folder 'unittests'
+
+That will set all your actions. Then, when you push your changes, you will have a detailed description of all the jobs run:
+
+![gh_actions](imgs/gh_actions.png)
+
+Have in mind this is a very basic usage of the actions.
+You can find the official documentation here:<br>
+https://docs.github.com/en/actions
+
+### Showing your badge
+
+Once you have all set, you might want to have your shiny badge to show everyone that your code is running as expected.
+
+As an example, I have a package named [PyMathTools](https://github.com/Jtachan/PyMathTools), which shows this badge:
+<br>![Badge](https://github.com/Jtachan/PyMathTools/actions/workflows/unittests.yml/badge.svg)
+
+The GitHub actions already give you this badge, without the need of you doing any extra work.
+To add it, you just need to add an image with the following hyperlink:
+
+`https://github.com/[GH-USER]/[REPO-NAME]/actions/workflows/[ACTIONS-FILE-NAME].yml/badge.svg`
+
+That should set everything you require.
