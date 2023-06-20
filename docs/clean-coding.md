@@ -7,18 +7,6 @@ However, there are a few guidelines to follow in order to do so.
 
 In this module, you will learn these guidelines I recommend for keeping codes maintainable and clean coding it.
 
-**Content**
-* [Naming conventions](#naming-conventions)
-  * [Variables](#variables)
-  * [Functions](#functions)
-  * [Classes](#classes)
-* [Documenting your project](#documenting-your-project)
-  * [Type hints](#type-hints)
-  * [Docstrings](#docstrings)
-* [Organizing your project](#organizing-your-project)
-  * [Project's files](#projects-files)
-  * [Easy imports](#easy-imports)
-
 ## Naming conventions
 
 General naming conventions to follow are the ones specified at the [Google styleguide](https://google.github.io/styleguide/pyguide.html#s3.16-naming).

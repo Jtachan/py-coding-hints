@@ -6,12 +6,6 @@ While there are many debugging methods, creating a unit test is very reliable fo
 The most known packages for unit tests are [`unittest`](https://docs.python.org/3/library/unittest.html) and [`pytest`](https://docs.pytest.org/en/latest/contents.html).
 This document is based for `pytests`, although the first section will show you the differences among them.
 
-**Content**
-- [Pytest Vs Unittest](#pytest-vs-unittest)
-- [Essentials](#essentials)
-- [Pytest useful features](#pytest-useful-features)
-- [GitHub integration](#github-integration)
-
 ## Pytest Vs Unittest
 
 [`unittest`](https://docs.python.org/3/library/unittest.html) is a great package to understand unit test codes.

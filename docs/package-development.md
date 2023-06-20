@@ -4,19 +4,6 @@ The word "Packages" defines every file and module that contains a set of files a
 
 In this document, you will understand the basics about the parts of a package and how to work with it. You will also find links to other sections and files.
 
-**Table of contents**
-* [Project structure](#project-structure)
-  * [Setup file](#setuppy-file)
-  * [Package folder](#package-folder)
-  * [Readme](#readme-file)
-  * [Unit test](#unit-test-folder)
-  * [Examples](#examples-folder)
-  * [Linting](#linting-files)
-* [Pipeline for development](#pipeline-for-development)
-* [Modules](#modules)
-* [Easy imports](#implementing-easy-imports)
-* [Releasing](#releasing)
-
 ## Project structure
 
 As just mentioned, the file that makes our package installable is the `setup.py`. However, keeping a good structure is crucial for our code to be easily maintainable.
