@@ -57,3 +57,7 @@ Here are also some online tools, which can help depending on the python script t
   * [Pytest Vs Unittest](docs/unit-testing.md#pytest-vs-unittest)
   * [Essentials](docs/unit-testing.md#essentials)
   * [Pytest useful features](docs/unit-testing.md#pytest-useful-features)
+  * [GitHub integration](docs/unit-testing.md#github-integration)
+    * [GitHub actions setup](docs/unit-testing.md#github-actions-setup)
+    * [Understanding the action files](docs/unit-testing.md#understanding-the-action-files)
+    * [Showing your badge](docs/unit-testing.md#showing-your-badge)
