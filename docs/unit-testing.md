@@ -317,7 +317,7 @@ jobs:
 The last part is `steps`, where all the steps to run are defined.
 Each step is defined by `-` to create a list of steps:
 - The first step checks out the current branch
-- The second, creates the python environment defined by the matrix state
+- The second creates the python environment defined by the matrix state
 - The third installs pytest and '.' (current directory)
 - At last, pytest is run over the folder 'unittests'
 

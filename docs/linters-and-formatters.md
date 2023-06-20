@@ -124,7 +124,7 @@ Let's go one by one with them:
 
 The first lines you would encounter in the `tox.ini` linked file are these:
 
-````commandline
+````yaml
 [flake8]
 max-line-length = 88
 
@@ -152,7 +152,7 @@ The profiles also work with `tox` itself.
 For it, let's take it step by step.
 
 The following is the profile for `tox`:
-```commandline
+```yaml
 [tox]
 envlist = py{38, 39, 310, 311}
 requires = virtualenv>=20.0
@@ -162,7 +162,7 @@ This means that, whenever you call `tox`, it will create 4 virtual environments:
 For this, tox will make sure (before any environment is created) that the package `virtualenv` is installed at the version 20.0 or higher.
 
 Then, each environment will run the following profile:
-```commandline
+```yaml
 [testenv]
 description = run unit test
 deps = 
@@ -194,7 +194,7 @@ While we could add the dependencies and commands to our previous `[testenv]` pro
 2. The checks will be done 4 times, one per environment (that is overkill).
 
 Instead, a new environment with another name can be created under `[tox]`. This one will be called "linters":
-```commandline
+```yaml
 [tox]
 envlist = py{38, 39, 310, 311}, linters
 ```
@@ -202,7 +202,7 @@ envlist = py{38, 39, 310, 311}, linters
 Now "linters" is a new profile, totally separated from the others.
 That means it also requires its own profile rules:
 
-````commandline
+````yaml
 [testenv:linters]
 description = check code style
 basepython = python3.8
